@@ -1,0 +1,155 @@
+.skeletonLoader {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+    &-removeBackground {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    &-removeAnimation {
+        &:after {
+            display: none !important;
+        }
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        height: 100%;
+        width: 100%;
+        opacity: 0.12;
+        animation: skeletonAnimationBackground 1000ms linear infinite;
+        will-change: opacity;
+        z-index: -1;
+    }
+
+    // Depending on the skeleton background color the pseudo-element should have a contrasting (dark/light) background 
+    &-contrast {
+        &_light {
+            &:after {
+                background-color: #171717;
+            }
+        }
+
+        &_dark {
+            &:after {
+                background-color: #FCFCFC;
+            }
+        }   
+    }
+
+    &-text,
+    &-textBlock {
+        border-radius: 2px;
+
+        &:after {
+            border-radius: 2px;
+            background-color: #8b8b8b;
+        }
+    }
+
+    &-text {
+        background: #E2E2E4;
+        width: 95px;
+        height: 8px;
+    }
+
+    &-textBlock {
+        background-color: #EFEFF1;
+        width: 127px;
+        height: 40px;
+        margin-right: 8px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 95px;
+            height: 8px;
+            left: 16px;
+            top: 16px;
+            background-color: #E2E2E4;
+            border-radius: 2px;
+            z-index: -1;
+        }
+    }
+
+    &-text,
+    &-textBlock,
+    &-imageCard {
+        &:after {
+            opacity: 0;
+            animation-name: skeletonAnimation;
+        }
+    }
+
+    &-imageCard {
+        background-color: #E2E2E4;
+        height: 10.5rem;
+    }
+
+    &-hero {
+        z-index: 0;
+
+        & > * {
+            z-index: 1;
+        }
+
+        &::after {
+            z-index: 0;
+        }
+    }
+
+    &-icon {
+        background-color: #E2E2E4;
+        border-radius: 50%;
+
+        &.skeletonLoader-image-card__subject-icons {
+            &:after {
+                animation-name: skeletonAnimation;
+            }
+        }
+
+        &:after {
+            border-radius: 50%;
+            opacity: 0;
+
+        }
+    }
+
+    
+}
+
+// This animation is to implement loaders with a background that does not need to be constrasted with another background color
+@keyframes skeletonAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.12;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+// This animation is to implement loaders with a background that need to contrast with another background
+@keyframes skeletonAnimationBackground {
+    0% {
+        opacity: 0.12;
+    }
+
+    50% {
+        opacity: 0.22;
+    }
+
+    100% {
+        opacity: 0.12;
+    }
+}

@@ -1,0 +1,40 @@
+/*******************************
+            Theme
+*******************************/
+
+@type: 'element';
+@element: 'VideoRow';
+
+@import (multiple) '~@client/sui/src/theme.config';
+
+/*******************************
+        Document Video
+*******************************/
+
+.video-container {
+    display: inline-block;
+    padding: 0;
+    width: 100%;
+
+    .meta-data {
+        width: 100%;
+        overflow: auto;
+        margin-top: 4px;
+        font-size: @fontSize;
+
+        & > .caption {
+            font-size: 1.125rem;
+        }
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+    }
+}
+
+/*******************************
+        Load overrides
+*******************************/
+
+.loadUIOverrides();
